@@ -13,8 +13,8 @@ class NasabahController extends Controller
      */
     public function index()
     {
-        // $nasabah = Nasabah::all();
-        return view('nasabah.index');
+        $nasabah = Nasabah::all();
+        return view('nasabah.index', ['nasabah' => $nasabah]);
     }
 
     /**
@@ -61,7 +61,7 @@ class NasabahController extends Controller
      */
     public function edit(Nasabah $nasabah)
     {
-        //
+        return view('nasabah.edit', ['nasabah' => $nasabah]);
     }
 
     /**
@@ -69,7 +69,21 @@ class NasabahController extends Controller
      */
     public function update(UpdateNasabahRequest $request, Nasabah $nasabah)
     {
-        //
+        $data = $request->validate([
+            "nik" => 'required',
+            'nama_lengkap' => 'required',
+            "alamat_lengkap" => 'required',
+            "tempat_lahir" => 'required',
+            "tanggal_lahir" => 'required',
+            "jenis_kelamin" => 'required',
+            "jenis_pekerjaan" => 'required',
+            "rentang_penghasilan" => 'required',
+            "pendidikan_terakhir" => 'required',
+        ]);
+
+        $nasabah->update($data);
+
+        return redirect(route('nasabah.index'))->with('success', 'Nasabah Updated Successfully');
     }
 
     /**

@@ -21,30 +21,26 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($nasabah as $nasabahEach)
                         <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                            <td>61</td>
-                            <td>2011/04/25</td>
-                            <td>$320,800</td>
+                            <td>{{$nasabahEach->nik}}</td>
+                            <td>{{$nasabahEach->nama_lengkap}}</td>
+                            <td>{{$nasabahEach->alamat_lengkap}}</td>
+                            <td>{{$nasabahEach->jenis_pekerjaan}}</td>
+                            <td>{{$nasabahEach->tanggal_lahir}}</td>
+                            <td>
+                                <a href="{{route('nasabah.edit', ['nasabah' => $nasabahEach])}}" class="btn btn-success btn-circle btn-sm">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a href="#" class="btn btn-danger btn-circle btn-sm">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                                <a href="#" class="btn btn-secondary btn-circle btn-sm">
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </td>
                         </tr>
-                        <tr>
-                            <td>Garrett Winters</td>
-                            <td>Accountant</td>
-                            <td>Tokyo</td>
-                            <td>63</td>
-                            <td>2011/07/25</td>
-                            <td>$170,750</td>
-                        </tr>
-                        <tr>
-                            <td>Ashton Cox</td>
-                            <td>Junior Technical Author</td>
-                            <td>San Francisco</td>
-                            <td>66</td>
-                            <td>2009/01/12</td>
-                            <td>$86,000</td>
-                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
