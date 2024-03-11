@@ -5,16 +5,16 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreNasabahRequest;
 use App\Http\Requests\UpdateNasabahRequest;
 use App\Models\Nasabah;
-use Illuminate\View\View;
 
 class NasabahController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index() : View
+    public function index()
     {
-        //
+        // $nasabah = Nasabah::all();
+        return view('nasabah.index');
     }
 
     /**
@@ -22,7 +22,7 @@ class NasabahController extends Controller
      */
     public function create()
     {
-        //
+        return view('nasabah.create');
     }
 
     /**
@@ -30,7 +30,22 @@ class NasabahController extends Controller
      */
     public function store(StoreNasabahRequest $request)
     {
-        //
+        $data = $request->validate([
+            "nik" => 'required',
+            'nama_lengkap' => 'required',
+            "alamat_lengkap" => 'required',
+            "tempat_lahir" => 'required',
+            "tanggal_lahir" => 'required',
+            "jenis_kelamin" => 'required',
+            "jenis_pekerjaan" => 'required',
+            "rentang_penghasilan" => 'required',
+            "pendidikan_terakhir" => 'required',
+            "file_ktp_location" => 'required',
+        ]);
+
+        $newNasabah = Nasabah::create($data);
+
+        return redirect(route('nasabah.index'));
     }
 
     /**
