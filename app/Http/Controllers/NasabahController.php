@@ -91,6 +91,7 @@ class NasabahController extends Controller
      */
     public function destroy(Nasabah $nasabah)
     {
-        //
+        $nasabah->delete();
+        return redirect(route('nasabah.index'))->with('success', 'Nasabah Deleted Successfully');
     }
 }
