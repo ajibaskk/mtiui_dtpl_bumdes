@@ -26,3 +26,5 @@ Route::get('home', [DashboardController::class, 'index'])->name('home')->middlew
 Route::get('nasabah', [NasabahController::class, 'index'])->name('nasabah.index');
 Route::get('nasabah/create', [NasabahController::class, 'create'])->name('nasabah.create');
 Route::post('nasabah', [NasabahController::class, 'store'])->name('nasabah.store');
+Route::get('nasabah/{nasabah}/edit', [NasabahController::class, 'edit'])->name('nasabah.edit');
+Route::put('nasabah/{nasabah}/update', [NasabahController::class, 'update'])->name('nasabah.update');
