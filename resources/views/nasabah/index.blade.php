@@ -1,5 +1,6 @@
 @extends('layout.layout')
 @section('content')
+
 <!-- Begin Page Content -->
 <div class="container-fluid">
     <!-- DataTales Example -->
@@ -29,15 +30,21 @@
                             <td>{{$nasabahEach->jenis_pekerjaan}}</td>
                             <td>{{$nasabahEach->tanggal_lahir}}</td>
                             <td>
-                                <a href="{{route('nasabah.edit', ['nasabah' => $nasabahEach])}}" class="btn btn-success btn-circle btn-sm">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                                <a href="#" class="btn btn-danger btn-circle btn-sm">
-                                    <i class="fas fa-trash"></i>
-                                </a>
-                                <a href="#" class="btn btn-secondary btn-circle btn-sm">
-                                    <i class="fas fa-arrow-right"></i>
-                                </a>
+                                <div class="row justify-content-center"">
+                                    <a href="{{route('nasabah.edit', ['nasabah' => $nasabahEach])}}" class="btn btn-success btn-circle btn-sm">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <form method="post" action="{{route('nasabah.destroy', ['nasabah' => $nasabahEach])}}" style="display: inline; margin-left: 5px; margin-right: 5px;">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-danger btn-circle btn-sm">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
+                                    <a href="#" class="btn btn-secondary btn-circle btn-sm">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </a>
+                                </div>
                             </td>
                         </tr>
                         @endforeach
