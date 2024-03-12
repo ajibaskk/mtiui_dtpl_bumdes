@@ -9,6 +9,7 @@
 
     <title>BUMDES - Dashboard</title>
 
+    <script src="{{ asset('js/app.js') }}"></script>
     <!-- Custom fonts for this template-->
     <link href="{{asset('js/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link
@@ -210,5 +211,6 @@
     <!-- Page level custom scripts -->
     <script src="{{ asset('js/demo/chart-area-demo.js') }}"></script>
     <script src="{{ asset('js.demo/chart-pie-demo.js') }}"></script>
+
 </body>
 </html>
