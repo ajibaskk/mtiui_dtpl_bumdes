@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreNasabahRequest;
 use App\Http\Requests\UpdateNasabahRequest;
 use App\Models\Nasabah;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class NasabahController extends Controller
 {
@@ -40,10 +42,22 @@ class NasabahController extends Controller
             "jenis_pekerjaan" => 'required',
             "rentang_penghasilan" => 'required',
             "pendidikan_terakhir" => 'required',
-            "file_ktp_location" => 'required',
+            "file_ktp_location" => 'required|file',
         ]);
 
         $newNasabah = Nasabah::create($data);
+
+        // get dropzone image
+        if ($request->file('file_ktp_location')) {
+            $file = $request->file('file_ktp_location');
+            $filename = time().'_'.$file->getClientOriginalName();
+            $path = Storage::putFileAs('public', $file, $filename);
+            $newNasabah->update([
+                'file_ktp_location' => str_replace("public", "storage", $path)
+            ]);
+        }
+        Log::info($newNasabah);
+
 
         return redirect(route('nasabah.index'));
     }
@@ -53,7 +67,7 @@ class NasabahController extends Controller
      */
     public function show(Nasabah $nasabah)
     {
-        //
+        return view('nasabah.detail', ['nasabah' => $nasabah]);
     }
 
     /**

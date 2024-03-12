@@ -41,7 +41,7 @@
                                             <i class="fas fa-trash"></i>
                                         </button>
                                     </form>
-                                    <a href="#" class="btn btn-secondary btn-circle btn-sm">
+                                    <a href="{{route('nasabah.detail', ['nasabah' => $nasabahEach])}}" class="btn btn-secondary btn-circle btn-sm">
                                         <i class="fas fa-arrow-right"></i>
                                     </a>
                                 </div>
