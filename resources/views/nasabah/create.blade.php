@@ -8,7 +8,7 @@
             <h6 class="m-0 font-weight-bold text-primary">Daftar Nasabah</h6>
         </div>
         <div class="card-body">
-            <form method="post" action="{{route('nasabah.store')}}">
+            <form method="post" action="{{route('nasabah.store')}}" enctype="multipart/form-data">
                 @csrf
                 @method('post')
                 <div class="form-group row">

@@ -38,13 +38,13 @@
 
             <!-- Nav Item - List Nasabah -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="{{ route('nasabah.index') }}">
                     <i class="fas fa-users"></i>
                     <span>List Nasabah</span></a>
             </li>
             <!-- Nav Item - Create Nasabah -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="{{ route('nasabah.create') }}">
                     <i class="fas fa-user-plus"></i>
                     <span>Tambah Nasabah</span></a>
             </li>
