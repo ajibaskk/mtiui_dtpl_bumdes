@@ -8,6 +8,13 @@
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Data Nasabah</h6>
         </div>
+        <div class="col-sm-6 float-right">
+            <div class="input-group rounded float-right">
+                <form>
+                    <input type="search" name="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" value="{{ request('search') }}" />
+                </form>
+            </div>
+        </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" width="100%" cellspacing="0">
