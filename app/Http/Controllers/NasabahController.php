@@ -15,7 +15,11 @@ class NasabahController extends Controller
      */
     public function index()
     {
-        $nasabah = Nasabah::paginate(10);
+        if (request('search')) {
+            $nasabah = Nasabah::where('nama_lengkap', 'like', '%' . request('search') . '%')->paginate(10);
+        } else {
+            $nasabah = Nasabah::paginate(10);
+        }
         return view('nasabah.index', compact('nasabah'));
     }
 
