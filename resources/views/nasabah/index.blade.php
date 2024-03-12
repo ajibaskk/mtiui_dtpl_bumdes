@@ -10,7 +10,7 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th>NIK</th>
@@ -30,7 +30,7 @@
                             <td>{{$nasabahEach->jenis_pekerjaan}}</td>
                             <td>{{$nasabahEach->tanggal_lahir}}</td>
                             <td>
-                                <div class="row justify-content-center"">
+                                <div class="row justify-content-center">
                                     <a href="{{route('nasabah.edit', ['nasabah' => $nasabahEach])}}" class="btn btn-success btn-circle btn-sm">
                                         <i class="fas fa-edit"></i>
                                     </a>
@@ -50,9 +50,11 @@
                         @endforeach
                     </tbody>
                 </table>
+                {{ $nasabah->links() }}
             </div>
         </div>
     </div>
+
 
 </div>
 <!-- /.container-fluid -->

@@ -41,7 +41,7 @@ class AuthController extends Controller
             $request->session()->regenerate();
             Log::info($credentials);
  
-            return redirect()->intended('home');
+            return redirect()->intended('nasabah.index');
         }
  
         return back()->withErrors([
