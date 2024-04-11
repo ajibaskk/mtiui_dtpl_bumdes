@@ -18,6 +18,9 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
+     <!-- Scripts -->
+     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
     <!-- Page Wrapper -->
@@ -52,6 +55,12 @@
 
             <!-- Divider -->
             <hr class="sidebar-divider">
+            
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ route('pinjaman.index') }}">
+                    <i class="fas fa-coins"></i>
+                    <span>Pinjaman</span></a>
+            </li>
 
         </ul>
         <!-- End of Sidebar -->
