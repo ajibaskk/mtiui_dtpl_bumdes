@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\NasabahController;
+use App\Http\Controllers\PinjamanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,3 +31,8 @@ Route::get('nasabah/{nasabah}/edit', [NasabahController::class, 'edit'])->name('
 Route::put('nasabah/{nasabah}/update', [NasabahController::class, 'update'])->name('nasabah.update');
 Route::delete('nasabah/{nasabah}/destroy', [NasabahController::class, 'destroy'])->name('nasabah.destroy');
 Route::get('nasabah/{nasabah}', [NasabahController::class, 'show'])->name('nasabah.detail');
+
+Route::get('pinjaman', [PinjamanController::class, 'index'])->name('pinjaman.index');
+Route::post('pinjaman', [PinjamanController::class, 'store'])->name('pinjaman.store');
+Route::put('pinjaman', [PinjamanController::class, 'update'])->name('pinjaman.update');
+Route::delete('pinjaman/{pinjaman}/destroy', [PinjamanController::class, 'destroy'])->name('pinjaman.destroy');
