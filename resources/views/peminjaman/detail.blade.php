@@ -5,36 +5,36 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Detail Nasabah</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Detail Peminjaman</h6>
         </div>
         <div class="card-body">
                 <div class="form-group row">
-                    <div class="col-sm-6 mb-3 mb-sm-0">
-                        <label for="namaLengkap">Nama Lengkap</label>
-                        <input type="text" class="form-control" id="namaLengkap" disabled
-                            name="nama_lengkap" placeholder="John Doe" value="{{$nasabah->nama_lengkap}}">
-                    </div>
-                    <div class="col-sm-6">
+                <div class="col-sm-6">
                         <label for="nik">NIK</label>
                         <input type="text" class="form-control" id="nik" disabled
                             name="nik" placeholder="NIK" value="{{$nasabah->nik}}">
+                    </div>
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <label for="namaLengkap">Nama Lengkap</label>
+                        <input type="text" class="form-control" id="namaLengkap" disabled
+                        name="nama_lengkap" placeholder="John Doe" value="{{$nasabah->nama_lengkap}}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="alamatLengkap">Alamat Lengkap</label>
                     <input type="text" class="form-control" id="alamatLengkap" disabled
-                        name="alamat_lengkap" placeholder="Jl. Nama Desa" value="{{$nasabah->alamat_lengkap}}">
+                    name="alamat_lengkap" placeholder="Jl. Nama Desa" value="{{$nasabah->alamat_lengkap}}">
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-3 mb-3 mb-sm-0">
                         <label for="tempatLahir">Tempat Lahir</label>
                         <input type="text" class="form-control" disabled
-                            id="tempatLahir" name="tempat_lahir" placeholder="Jakarta" value="{{$nasabah->tempat_lahir}}">
+                        id="tempatLahir" name="tempat_lahir" placeholder="Jakarta" value="{{$nasabah->tempat_lahir}}">
                     </div>
                     <div class="col-sm-3">
                         <label for="tanggalLahir">Tanggal Lahir</label>
                         <input type="date" class="form-control" disabled
-                            id="tanggalLahir" name="tanggal_lahir" placeholder="01/01/2000" value="{{$nasabah->tanggal_lahir}}">
+                        id="tanggalLahir" name="tanggal_lahir" placeholder="01/01/2000" value="{{$nasabah->tanggal_lahir}}">
                     </div>
                     <div class="col-sm-3">
                         <label for="jenisKelamin">Jenis Kelamin</label>
@@ -48,7 +48,7 @@
                     <div class="col-sm-3 mb-3 mb-sm-0">
                         <label for="jenisPekerjaan">Jenis Pekerjaan</label>
                         <select class="custom-select" id="jenisPekerjaan" name="jenis_pekerjaan" disabled>
-                            <option value="Karyawan Swasta" @selected($nasabah->jenis_pekerjaan == 'Karyawan Swasta')>Karyawan Swasta</option>
+                        <option value="Karyawan Swasta" @selected($nasabah->jenis_pekerjaan == 'Karyawan Swasta')>Karyawan Swasta</option>
                             <option value="Petani" @selected($nasabah->jenis_pekerjaan == 'Petani')>Petani</option>
                             <option value="Pengangguran" @selected($nasabah->jenis_pekerjaan == 'Pengangguran')>Pengangguran</option>
                         </select>
@@ -73,54 +73,57 @@
                         </select>
                     </div>
                 </div>
-                <div class="form-group row">
-                    <div class="col-sm-3 mb-3 mb-sm-0">
-                        <label for="fileKtpKk">File KTP/KK</label>
-                        <img src="{{ asset($nasabah->file_ktp_location) }}" width="400">
-                    </div>
+                <div class="col-sm-6">
+                        <label for="nama_usaha">Nama Usaha</label>
+                        <input type="text" class="form-control" id="nama_usaha" disabled
+                            name="nama_usaha" placeholder="Nama Usaha" value="{{$peminjaman->nama_usaha}}">
                 </div>
-                <div class="col-sm-6 mb-6">
-                    <a href="{{route('nasabah.edit', ['nasabah' => $nasabah])}}" class="btn btn-secondary btn-user btn-sm">Ubah</a>
+                <div class="col-sm-6">
+                        <label for="jenis_usaha">Jenis Usaha</label>
+                        <input type="text" class="form-control" id="jenis_usaha" disabled
+                            name="jenis_usaha" placeholder="Jenis Usaha" value="{{$peminjaman->jenis_usaha}}">
+                </div>
+                <div class="col-sm-6">
+                        <label for="deskripsi_usaha">Deskripsi Usaha</label>
+                        <input type="text" class="form-control" id="deskripsi_usaha" disabled
+                            name="deskripsi_usaha" placeholder="Deskripsi Usaha" value="{{$peminjaman->deskripsi_usaha}}">
+                </div>
+                <div class="col-sm-3">
+                        <label for="jumlah_pinjaman">Jumlah Pinjaman</label>
+                        <select class="custom-select" id="jumlah_pinjaman" name="jumlah_pinjaman" disabled>
+                            <option value="{{$peminjaman->jumlah_pinjaman}}" selected>Rp {{number_format($peminjaman->jumlah_pinjaman, 2, ",", ".")}}</option>
+                        </select>
+                </div>
+                <div class="col-sm-3">
+                        <label for="tenor">Tenor Pinjaman</label>
+                        <select class="custom-select" id="tenor" name="tenor" disabled>
+                            <option value="{{$peminjaman->tenor}}">{{$peminjaman->tenor}} Bulan</option>
+
+                        </select>
+                </div>
+                <div class="col-sm-3">
+                        <label for="bunga">Bunga Pinjaman</label>
+                        <select class="custom-select" id="bunga" name="bunga" disabled>
+                            <option value="{{$peminjaman->bunga}}">{{$peminjaman->bunga}}%</option>
+                        </select>
+                </div>
+                <div class="col-sm-6">
+                        <label for="totalPinjaman">Total Pinjaman</label>
+                        <input type="text" class="form-control" id="totalPinjaman"
+                            name="totalPinjaman" placeholder="Rp 0" disabled value="Rp {{number_format($peminjaman->total_pinjaman, 2, ",", ".")}}">
+                </div>
+                <div class="col-sm-6">
+                        <label for="jumlahAngsuran">Jumlah Angsuran</label>
+                        <input type="text" class="form-control" id="jumlahAngsuran"
+                            name="jumlahAngsuran" placeholder="Rp 0" disabled value="Rp {{number_format($peminjaman->angsuran, 2, ",", ".")}}">
                 </div>
                 <br>
-                <div class="form-group row">
-                    <label for="pinjamanUser">Daftar Pinjaman</label>
-                    <table class="table table-bordered" id="pinjamanUser" name="pinjamanUser" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>Nama Usaha</th>
-                            <th>Total Pinjaman</th>
-                            <th>Tenor</th>
-                            <th>Status</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($peminjaman as $peminjamanEach)
-                        <tr>
-                            <td>{{$peminjamanEach->nama_usaha}}</td>
-                            <td>Rp {{ number_format($peminjamanEach->total_pinjaman, 2, ",", ".") }}</td>
-                            <td>{{$peminjamanEach->tenor}} Bulan</td>
-                            <td><button class="btn btn-primary" disabled>
-                                {{$peminjamanEach->status}}
-                            </button></td>
-                            <td> <div class="row justify-content-center">
-                                    <a href="{{route('peminjaman.detail', ['nasabah' => $nasabah, 'peminjaman' =>  $peminjamanEach])}}" class="btn btn-success btn-circle btn-sm">
-                                        <i class="fas fa-eye"></i>
-                                    </a>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-                <div class="col-sm-6 mb-3">
-                    <a href="{{route('peminjaman.create', ['nasabah' => $nasabah])}}" class="btn btn-primary btn-user btn-sm">Buat Peminjaman</a>
-                </div>
-                </div>
+                <div class="justify-content-end">
                 
+                </div>
         </div>
     </div>
 
 </div>
-<!-- /.container-fluid -->
+
 @endsection
