@@ -20,6 +20,7 @@ class Peminjaman extends Model
         'tenor',
         'bunga',
         'total_pinjaman',
-        'angsuran'
+        'angsuran',
+        'status'
     ];
 }

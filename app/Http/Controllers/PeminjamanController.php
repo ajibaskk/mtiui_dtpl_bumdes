@@ -47,7 +47,8 @@ class PeminjamanController extends Controller
             'tenor' => $request->tenor,
             'bunga' => $request->bunga,
             'total_pinjaman' => floor($totalPinjaman),
-            'angsuran' => $angsuran
+            'angsuran' => $angsuran,
+            'status' => 'DIAJUKAN'
         ];
         
         $peminjaman = Peminjaman::create($data);

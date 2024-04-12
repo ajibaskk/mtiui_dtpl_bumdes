@@ -79,6 +79,10 @@
                         <img src="{{ asset($nasabah->file_ktp_location) }}" width="400">
                     </div>
                 </div>
+                <div class="col-sm-6 mb-6">
+                    <a href="{{route('nasabah.edit', ['nasabah' => $nasabah])}}" class="btn btn-secondary btn-user btn-sm">Ubah</a>
+                </div>
+                <br>
                 <div class="form-group row">
                     <label for="pinjamanUser">Daftar Pinjaman</label>
                     <table class="table table-bordered" id="pinjamanUser" name="pinjamanUser" width="100%" cellspacing="0">
@@ -87,6 +91,7 @@
                             <th>Nama Usaha</th>
                             <th>Total Pinjaman</th>
                             <th>Tenor</th>
+                            <th>Status</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -96,6 +101,9 @@
                             <td>{{$peminjamanEach->nama_usaha}}</td>
                             <td>Rp {{ number_format($peminjamanEach->total_pinjaman, 2, ",", ".") }}</td>
                             <td>{{$peminjamanEach->tenor}} Bulan</td>
+                            <td><button class="btn btn-primary" disabled>
+                                {{$peminjamanEach->status}}
+                            </button></td>
                             <td> <div class="row justify-content-center">
                                     <a href="{{route('peminjaman.detail', ['nasabah' => $nasabah, 'peminjaman' =>  $peminjamanEach])}}" class="btn btn-success btn-circle btn-sm">
                                         <i class="fas fa-eye"></i>
@@ -105,14 +113,11 @@
                         @endforeach
                     </tbody>
                 </table>
-                </div>
-                <br>
-                <div class="justify-content-end">
+                <div class="col-sm-6 mb-3">
                     <a href="{{route('peminjaman.create', ['nasabah' => $nasabah])}}" class="btn btn-primary btn-user btn-sm">Buat Peminjaman</a>
                 </div>
-                <div class="justify-content-end">
-                    <a href="{{route('nasabah.edit', ['nasabah' => $nasabah])}}" class="btn btn-secondary btn-user btn-sm">Ubah</a>
                 </div>
+                
         </div>
     </div>
 
