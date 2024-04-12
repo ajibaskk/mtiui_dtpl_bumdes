@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\NasabahController;
+use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\PinjamanController;
 use Illuminate\Support\Facades\Route;
 
@@ -36,3 +37,7 @@ Route::get('pinjaman', [PinjamanController::class, 'index'])->name('pinjaman.ind
 Route::post('pinjaman', [PinjamanController::class, 'store'])->name('pinjaman.store');
 Route::put('pinjaman', [PinjamanController::class, 'update'])->name('pinjaman.update');
 Route::delete('pinjaman/{pinjaman}/destroy', [PinjamanController::class, 'destroy'])->name('pinjaman.destroy');
+
+Route::get('nasabah/{nasabah}/peminjaman/create', [PeminjamanController::class, 'create'])->name('peminjaman.create');
+Route::post('nasabah/{nasabah}/peminjaman', [PeminjamanController::class, 'store'])->name('peminjaman.store');
+Route::get('nasabah/{nasabah}/peminjaman/{peminjaman}', [PeminjamanController::class, 'detail'])->name('peminjaman.detail');

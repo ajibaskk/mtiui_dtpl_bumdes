@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreNasabahRequest;
 use App\Http\Requests\UpdateNasabahRequest;
 use App\Models\Nasabah;
+use App\Models\Peminjaman;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
@@ -71,7 +72,8 @@ class NasabahController extends Controller
      */
     public function show(Nasabah $nasabah)
     {
-        return view('nasabah.detail', ['nasabah' => $nasabah]);
+        $peminjaman = Peminjaman::where('nasabah_id', $nasabah->nasabah_id)->get();
+        return view('nasabah.detail', ['nasabah' => $nasabah, 'peminjaman' => $peminjaman]);
     }
 
     /**
