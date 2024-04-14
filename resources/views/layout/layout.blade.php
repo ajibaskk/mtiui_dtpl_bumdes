@@ -39,6 +39,10 @@
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
+            <li class="nav-item">
+                <a class="nav-link">
+                    <span>Nasabah</span></a>
+            </li>
 
             <!-- Nav Item - List Nasabah -->
             <li class="nav-item active">
@@ -53,13 +57,32 @@
                     <span>Tambah Nasabah</span></a>
             </li>
 
+
             <!-- Divider -->
-            <hr class="sidebar-divider">
-            
+            <hr class="sidebar-divider" style="background-color:white">
+            <li class="nav-item">
+                <a class="nav-link">
+                    <span>Master Pinjaman</span></a>
+            </li>
+
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('pinjaman.index') }}">
                     <i class="fas fa-coins"></i>
-                    <span>Pinjaman</span></a>
+                    <span>Master Pinjaman</span></a>
+            </li>
+
+             <!-- Nav Item - Bunga-->
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ route('master.bunga') }}">
+                    <i class="fas fa-user-plus"></i>
+                    <span>Master Bunga</span></a>
+            </li>
+
+            <!-- Nav Item - Bunga-->
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ route('nasabah.create') }}">
+                    <i class="fas fa-user-plus"></i>
+                    <span>Master Tenor</span></a>
             </li>
 
         </ul>
@@ -130,7 +153,7 @@
                                 <img class="img-profile rounded-circle"
                                     src="{{ asset('img/undraw_profile.svg') }}">
                             </a>
-                            
+
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
                                 <div class="dropdown-divider"></div>
@@ -152,11 +175,9 @@
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
-                    </div>
+            <footer id="footer" class="sticky-footer bg-white">
+                <div class="text-center">
+                    <span>Copyright &copy; Your Website 2021</span>
                 </div>
             </footer>
             <!-- End of Footer -->
