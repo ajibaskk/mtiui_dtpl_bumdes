@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\NasabahController;
 use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\PinjamanController;
+use App\Http\Controllers\MasterBungaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,3 +42,8 @@ Route::delete('pinjaman/{pinjaman}/destroy', [PinjamanController::class, 'destro
 Route::get('nasabah/{nasabah}/peminjaman/create', [PeminjamanController::class, 'create'])->name('peminjaman.create');
 Route::post('nasabah/{nasabah}/peminjaman', [PeminjamanController::class, 'store'])->name('peminjaman.store');
 Route::get('nasabah/{nasabah}/peminjaman/{peminjaman}', [PeminjamanController::class, 'detail'])->name('peminjaman.detail');
+
+Route::get('master/bunga', [MasterBungaController::class, 'index'])->name('master.bunga');
+Route::post('master/bunga', [MasterBungaController::class, 'store'])->name('master.bunga.store');
+Route::put('master/bunga', [MasterBungaController::class, 'update'])->name('master.bunga.update');
+Route::delete('master/bunga/{masterBunga}/destroy', [MasterBungaController::class, 'destroy'])->name('master.bunga.destroy');
