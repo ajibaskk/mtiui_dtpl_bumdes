@@ -6,29 +6,27 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Data Bunga Nasabah</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Data Tenor Nasabah</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Bunga</th>
-                            <th>Angsuran</th>
+                            <th>Waktu Angsuran</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($bungas as $bungaEach)
                         <tr>
-                            <td>{{$bungaEach->bunga}}%</td>
                             <td>Angsuran {{$bungaEach->waktu_angsuran}} Bulan</td>
                             <td>
                                 <div class="row justify-content-center">
                                     <a data-bs-toggle="modal" id="editModalButton_{{$bungaEach->master_bunga_id}}" data-id="{{$bungaEach->master_bunga_id}}" data-passBunga="{{$bungaEach->bunga}}" data-passWaktuAngsuran="{{$bungaEach->waktu_angsuran}}" data-bs-target="#editModal" class="btn btn-success btn-circle btn-sm">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    <form method="post" action="{{route('master.bunga.destroy', ['masterBunga' => $bungaEach])}}" style="display: inline; margin-left: 5px; margin-right: 5px;">
+                                    <form method="post" action="{{route('master.tenor.destroy', ['masterBunga' => $bungaEach])}}" style="display: inline; margin-left: 5px; margin-right: 5px;">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-danger btn-circle btn-sm">
@@ -60,16 +58,13 @@
         <h1 class="modal-title fs-5" id="createModalLabel">Tambah opsi</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form method="post" action="{{route('master.bunga.store')}}">
+      <form method="post" action="{{route('master.tenor.store')}}">
           @csrf
           @method('post')
           <div class="modal-body">
-            <label class="sr-only" for="inlineFormInputGroupUsername2">Bunga</label>
+            <label class="sr-only" for="inlineFormInputGroupUsername2">Tenor</label>
               <div class="input-group mb-2 mr-sm-2">
-                <div class="input-group-prepend">
-                  <div class="input-group-text">Bunga</div>
-                </div>
-                <input name="bunga" type="float" class="form-control" id="inlineFormInputGroupUsername2" placeholder="Dalam Desimal (0.35)">
+                <input name="bunga" type="hidden" value = "0" class="form-control" id="inlineFormInputGroupUsername2" placeholder="Dalam Desimal (0.35)">
               </div>
               <div class="input-group mb-2 mr-sm-2">
                 <div class="input-group-prepend">
@@ -95,12 +90,15 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      <form method="post" action="{{route('master.bunga.update')}}">
+      <form method="post" action="{{route('master.tenor.update')}}">
           @csrf
           @method('put')
           <div class="modal-body">
             <label class="sr-only" for="inlineFormInputGroupUsername2">Bunga</label>
-              
+            <div class="input-group mb-2 mr-sm-2">
+                <input type="hidden" id="editBungaInputId" name="bungaId">
+                <input name="bunga" id="editBungaInput" type="hidden" class="form-control" id="inlineFormInputGroupUsername2" placeholder="Dalam Desimal (0.35)">
+              </div>
               <div class="input-group mb-2 mr-sm-2">
                 <div class="input-group-prepend">
                   <div class="input-group-text" id="modalInputBody">Jangka Waktu Angsuran</div>

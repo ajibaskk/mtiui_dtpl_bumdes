@@ -8,21 +8,12 @@ use App\Models\MasterBunga;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
-class MasterBungaController extends Controller
+class MasterTenorController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        $bungas = MasterBunga::all()->sortBy("bunga");
-        return view('master.bunga', compact('bungas'));
-    }
-
     /**
      * Display a listing of the tenor.
      */
-    public function indexTenor()
+    public function index()
     {
         $bungas = MasterBunga::all()->sortBy("bunga");
         return view('master.tenor', compact('bungas'));
@@ -40,7 +31,7 @@ class MasterBungaController extends Controller
 
         $bunga = MasterBunga::create($data);
         Log::info($bunga);
-        return redirect(route('master.bunga'));
+        return redirect(route('master.tenor'));
     }
 
     /**
@@ -51,14 +42,13 @@ class MasterBungaController extends Controller
         $bunga = MasterBunga::find($request->bungaId);
 
         $data = [
-            'bunga' => $request->bunga,
             'waktu_angsuran' => $request->waktu_angsuran
         ];
 
         $bunga->update($data);
         Log::info($bunga);
 
-        return redirect(route('master.bunga'))->with('success', 'Bunga Updated Successfully');
+        return redirect(route('master.tenor'))->with('success', 'Bunga Updated Successfully');
     }
 
     /**
@@ -67,6 +57,6 @@ class MasterBungaController extends Controller
     public function destroy(MasterBunga $masterBunga)
     {
         $masterBunga->delete();
-        return redirect(route('master.bunga'))->with('success', 'Bunga Deleted Successfully');
+        return redirect(route('master.tenor'))->with('success', 'Bunga Deleted Successfully');
     }
 }
