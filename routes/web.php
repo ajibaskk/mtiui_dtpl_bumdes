@@ -6,6 +6,7 @@ use App\Http\Controllers\NasabahController;
 use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\PinjamanController;
 use App\Http\Controllers\MasterBungaController;
+use App\Http\Controllers\MasterTenorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -47,3 +48,9 @@ Route::get('master/bunga', [MasterBungaController::class, 'index'])->name('maste
 Route::post('master/bunga', [MasterBungaController::class, 'store'])->name('master.bunga.store');
 Route::put('master/bunga', [MasterBungaController::class, 'update'])->name('master.bunga.update');
 Route::delete('master/bunga/{masterBunga}/destroy', [MasterBungaController::class, 'destroy'])->name('master.bunga.destroy');
+
+Route::get('master/tenor', [MasterTenorController::class, 'index'])->name('master.tenor');
+Route::post('master/tenor', [MasterTenorController::class, 'store'])->name('master.tenor.store');
+Route::put('master/tenor', [MasterTenorController::class, 'update'])->name('master.tenor.update');
+Route::delete('master/tenor/{masterBunga}/destroy', [MasterTenorController::class, 'destroy'])->name('master.tenor.destroy');
+

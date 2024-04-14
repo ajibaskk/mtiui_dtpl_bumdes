@@ -80,7 +80,7 @@
 
             <!-- Nav Item - Bunga-->
             <li class="nav-item active">
-                <a class="nav-link" href="{{ route('nasabah.create') }}">
+                <a class="nav-link" href="{{ route('master.tenor') }}">
                     <i class="fas fa-user-plus"></i>
                     <span>Master Tenor</span></a>
             </li>
