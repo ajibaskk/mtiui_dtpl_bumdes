@@ -15,7 +15,7 @@ class MasterTenorController extends Controller
      */
     public function index()
     {
-        $bungas = MasterBunga::all()->sortBy("bunga");
+        $bungas = MasterBunga::all()->sortBy("waktu_angsuran");
         return view('master.tenor', compact('bungas'));
     }
 

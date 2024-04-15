@@ -20,15 +20,6 @@ class MasterBungaController extends Controller
     }
 
     /**
-     * Display a listing of the tenor.
-     */
-    public function indexTenor()
-    {
-        $bungas = MasterBunga::all()->sortBy("bunga");
-        return view('master.tenor', compact('bungas'));
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
