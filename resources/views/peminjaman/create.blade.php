@@ -102,17 +102,17 @@
                 <div class="col-sm-3">
                         <label for="tenor">Tenor Pinjaman</label>
                         <select class="custom-select" id="tenor" name="tenor">
-                            <option value="3">3 Bulan</option>
-                            <option value="6">6 Bulan</option>
-                            <option value="9">9 Bulan</option>
+                            @foreach($waktuAngsuran as $waktuAngsuranEach)
+                                <option value="{{$waktuAngsuranEach->waktu_angsuran}}" data-bunga="{{$waktuAngsuranEach->bunga}}">{{$waktuAngsuranEach->waktu_angsuran}}</option>
+                            @endforeach
                         </select>
                 </div>
                 <div class="col-sm-3">
                         <label for="bunga">Bunga Pinjaman</label>
-                        <select class="custom-select" id="bunga" name="bunga">
-                            <option value="3">3%</option>
-                            <option value="5">5%</option>
-                            <option value="10">10%</option>
+                        <select class="custom-select" id="bunga" name="bunga" disabled>
+                            @foreach($waktuAngsuran as $waktuAngsuranEach)
+                                <option value="{{$waktuAngsuranEach->bunga}}">{{$waktuAngsuranEach->bunga}}</option>
+                            @endforeach
                         </select>
                 </div>
                 <div class="col-sm-6">
@@ -137,25 +137,40 @@
 
 </div>
 <!-- /.container-fluid -->
-<script type="text/javascript"> 
-    $("#jumlah_pinjaman, #tenor, #bunga").on("change", function (e) { 
+<script type="text/javascript">
+    // Ambil elemen-elemen yang dibutuhkan
+    var tenorSelect = document.getElementById('tenor');
+    var bungaSelect = document.getElementById('bunga');
+
+    // Tambahkan event listener untuk menangani perubahan pada form "Tenor Pinjaman"
+    tenorSelect.addEventListener('change', function() {
+        // Dapatkan nilai "bunga" yang sesuai dengan "tenor" yang dipilih
+        var selectedOption = tenorSelect.options[tenorSelect.selectedIndex];
+        var selectedBunga = selectedOption.getAttribute('data-bunga');
+
+        // Set nilai form "Bunga Pinjaman" sesuai dengan "bunga" yang sesuai
+        bungaSelect.value = selectedBunga;
+    });
+
+    $("#jumlah_pinjaman, #tenor").on("change", function (e) {
         var jumlahPinjaman = $('#jumlah_pinjaman').find(":selected").val();
         var tenor = $('#tenor').find(":selected").val();
         var bunga = $('#bunga').find(":selected").val();
-        
+
         var totalPinjaman = Math.round(calcPinjaman(jumlahPinjaman, bunga))
         var jumlahAngsuran = Math.round(calculateAngsuran(totalPinjaman, tenor))
-        
+
         $('#totalPinjaman').val("Rp " + totalPinjaman.toLocaleString("id-ID"));
         $('#jumlahAngsuran').val("Rp " + jumlahAngsuran.toLocaleString("id-ID"));
-    }); 
-    
+        $('#bunga').val(bunga);
+    });
+
     function calcPinjaman(a, b) {
         return Number(a)/100 * (100 + Number(b))
     }
-    
+
     function calculateAngsuran(a, b) {
         return Number(a) / Number(b)
     }
-</script> 
+</script>
 @endsection
