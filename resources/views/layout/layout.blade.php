@@ -57,6 +57,19 @@
                     <span>Tambah Nasabah</span></a>
             </li>
 
+            <!-- Divider -->
+            <hr class="sidebar-divider" style="background-color:white">
+            <li class="nav-item">
+                <a class="nav-link">
+                    <span>Angsuran</span></a>
+            </li>
+
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ route('angsuran.index') }}">
+                    <i class="fas fa-coins"></i>
+                    <span>List Angsuran</span></a>
+            </li>
+
 
             <!-- Divider -->
             <hr class="sidebar-divider" style="background-color:white">
