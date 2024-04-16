@@ -8,6 +8,7 @@ use App\Models\Pinjaman;
 use App\Models\MasterBunga;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use PDF; 
 
 class PeminjamanController extends Controller
 {
@@ -63,4 +64,22 @@ class PeminjamanController extends Controller
     {
         return view('peminjaman.detail', ['nasabah' => $nasabah, 'peminjaman'=> $peminjaman]);
     }
+    
+    public function generatePDF(Nasabah $nasabah, Peminjaman $peminjaman) {
+        $data = ['nasabah' => $nasabah, 'peminjaman'=> $peminjaman];
+        
+        $peminjaman->status = 'DIPROSES';
+        $peminjaman->save();
+        view()->share('peminjaman.pdf',$data);
+        $pdf = PDF::loadView("peminjaman.pdf", $data);
+        return $pdf->stream('form-pinjaman.pdf');
+    }
+    
+    public function approve(Nasabah $nasabah, Peminjaman $peminjaman)
+    {
+        $peminjaman->status = 'DISETUJUI';
+        $peminjaman->save();
+        return redirect(route('nasabah.detail', ['nasabah' => $nasabah]));
+    }
 }
+

@@ -101,12 +101,32 @@
                             <td>{{$peminjamanEach->nama_usaha}}</td>
                             <td>Rp {{ number_format($peminjamanEach->total_pinjaman, 2, ",", ".") }}</td>
                             <td>{{$peminjamanEach->tenor}} Bulan</td>
-                            <td><button class="btn btn-primary" disabled>
-                                {{$peminjamanEach->status}}
-                            </button></td>
+                            <td>
+                                @if ($peminjamanEach->status == 'DISETUJUI')
+                                    <button class="btn btn-success" disabled>
+                                        {{ $peminjamanEach->status }}
+                                    </button>
+                                @elseif ($peminjamanEach->status == 'DIPROSES')
+                                    <button class="btn btn-primary" disabled>
+                                        {{ $peminjamanEach->status }}
+                                    </button>
+                                    @else
+                                    <button class="btn btn-secondary" disabled>
+                                        {{ $peminjamanEach->status }}
+                                    </button>
+                                @endif
+                            </td>
                             <td> <div class="row justify-content-center">
                                     <a href="{{route('peminjaman.detail', ['nasabah' => $nasabah, 'peminjaman' =>  $peminjamanEach])}}" class="btn btn-success btn-circle btn-sm">
                                         <i class="fas fa-eye"></i>
+                                    </a>
+                                    &nbsp
+                                    <a href="{{route('peminjaman.generate-pdf', ['nasabah' => $nasabah, 'peminjaman' =>  $peminjamanEach])}}" class="btn btn-primary btn-circle btn-sm">
+                                        <i class="fas fa-file-pdf"></i>
+                                    </a>
+                                    &nbsp
+                                    <a href="{{route('peminjaman.approve', ['nasabah' => $nasabah, 'peminjaman' =>  $peminjamanEach])}}" class="btn btn-secondary btn-circle btn-sm">
+                                    <i class="fas fa-check-circle"></i>
                                     </a>
                             </td>
                         </tr>
@@ -114,7 +134,7 @@
                     </tbody>
                 </table>
                 <div class="col-sm-6 mb-3">
-                    <a href="{{route('peminjaman.create', ['nasabah' => $nasabah])}}" class="btn btn-primary btn-user btn-sm">Buat Peminjaman</a>
+                    <a href="{{route('peminjaman.create', ['nasabah' => $nasabah])}}" class="btn btn-primary btn-user btn-sm">Ajukan Peminjaman</a>
                 </div>
                 </div>
                 

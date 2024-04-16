@@ -43,6 +43,8 @@ Route::delete('pinjaman/{pinjaman}/destroy', [PinjamanController::class, 'destro
 Route::get('nasabah/{nasabah}/peminjaman/create', [PeminjamanController::class, 'create'])->name('peminjaman.create');
 Route::post('nasabah/{nasabah}/peminjaman', [PeminjamanController::class, 'store'])->name('peminjaman.store');
 Route::get('nasabah/{nasabah}/peminjaman/{peminjaman}', [PeminjamanController::class, 'detail'])->name('peminjaman.detail');
+Route::get('nasabah/{nasabah}/peminjaman/{peminjaman}/pdf', [PeminjamanController::class, 'generatepdf'])->name('peminjaman.generate-pdf');
+Route::get('nasabah/{nasabah}/peminjaman/{peminjaman}/approve', [PeminjamanController::class, 'approve'])->name('peminjaman.approve');
 
 Route::get('master/bunga', [MasterBungaController::class, 'index'])->name('master.bunga');
 Route::post('master/bunga', [MasterBungaController::class, 'store'])->name('master.bunga.store');
