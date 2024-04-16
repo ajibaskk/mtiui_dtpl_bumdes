@@ -18,6 +18,7 @@ class AngsuranController extends Controller
         $peminjaman = Peminjaman::leftJoin('angsuran', 'peminjaman.id', '=', 'angsuran.peminjaman_id')
                         ->with('nasabah')
                         ->get();
+
         foreach ($peminjaman as $p) {
             $cicilanTerbayar = $p->cicilan_terbayar;
             $angsuran = $p->angsuran;
@@ -34,7 +35,6 @@ class AngsuranController extends Controller
             $kategori = $totalPinjaman == $cicilanTerbayar ? 'Lunas' : $kategoriCicilan;
 
             $p->kategori = $kategori;
-
         }
         return view('angsuran.index', compact('peminjaman'));
     }
