@@ -11,6 +11,11 @@
         background-color:red!important;
         color:#fff!important;
     }
+
+    .Lunas{
+        background-color:blue!important;
+        color:#fff!important;
+    }
 </style>
 <!-- Begin Page Content -->
 <div class="container-fluid">

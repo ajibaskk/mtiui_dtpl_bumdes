@@ -21,6 +21,7 @@ class AngsuranController extends Controller
         foreach ($peminjaman as $p) {
             $cicilanTerbayar = $p->cicilan_terbayar;
             $angsuran = $p->angsuran;
+            $totalPinjaman = $p->total_pinjaman;
 
             $createdDate = Carbon::parse($p->created_at);
             $currentDate = Carbon::now();
@@ -28,7 +29,9 @@ class AngsuranController extends Controller
 
             $cicilanSeharusnyaSekarang = $angsuran * $diffInMonths;
 
-            $kategori = $cicilanSeharusnyaSekarang >= $cicilanTerbayar ? 'Terlambat' : 'Lancar';
+            $kategoriCicilan = $cicilanSeharusnyaSekarang >= $cicilanTerbayar ? 'Terlambat' : 'Lancar';
+
+            $kategori = $totalPinjaman == $cicilanTerbayar ? 'Lunas' : $kategoriCicilan;
 
             $p->kategori = $kategori;
 
