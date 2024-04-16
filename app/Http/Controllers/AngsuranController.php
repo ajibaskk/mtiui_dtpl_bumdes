@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Peminjaman;
 use App\Models\Angsuran;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+
 
 class AngsuranController extends Controller
 {
@@ -13,9 +15,25 @@ class AngsuranController extends Controller
      */
     public function index()
     {
-        $peminjaman = Peminjaman::with('nasabah')->get();
-        $angsuran = Angsuran::with('peminjaman')->get();
-        return view('angsuran.index', compact('peminjaman', 'angsuran'));
+        $peminjaman = Peminjaman::leftJoin('angsuran', 'peminjaman.id', '=', 'angsuran.peminjaman_id')
+                        ->with('nasabah')
+                        ->get();
+        foreach ($peminjaman as $p) {
+            $cicilanTerbayar = $p->cicilan_terbayar;
+            $angsuran = $p->angsuran;
+
+            $createdDate = Carbon::parse($p->created_at);
+            $currentDate = Carbon::now();
+            $diffInMonths = $currentDate->diffInMonths($createdDate);
+
+            $cicilanSeharusnyaSekarang = $angsuran * $diffInMonths;
+
+            $kategori = $cicilanSeharusnyaSekarang >= $cicilanTerbayar ? 'Terlambat' : 'Lancar';
+
+            $p->kategori = $kategori;
+
+        }
+        return view('angsuran.index', compact('peminjaman'));
     }
 
     /**
@@ -31,7 +49,7 @@ class AngsuranController extends Controller
      */
     public function show(string $id)
     {
-        $peminjaman = Peminjaman::with('nasabah')->where('id', $id)->first();
+        $peminjaman = Peminjaman::leftJoin('angsuran', 'peminjaman.id', '=', 'angsuran.peminjaman_id')->with('nasabah')->where('peminjaman_id', $id)->first();
         return view('angsuran.detail', ['peminjaman' => $peminjaman]);
     }
 
@@ -40,7 +58,13 @@ class AngsuranController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $cicilanTerbayar = $request->cicilan_terbayar + $request->angsuranTerbayar;
+
+        $peminjaman = Angsuran::updateOrCreate(
+            ['id' => $id],
+            ['cicilan_terbayar' => $cicilanTerbayar]);
+
+        return redirect(route('angsuran.index'))->with('success', 'Angsuran Updated Successfully');
     }
 
     /**

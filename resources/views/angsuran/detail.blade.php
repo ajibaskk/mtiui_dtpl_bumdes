@@ -8,6 +8,9 @@
             <h6 class="m-0 font-weight-bold text-primary">Detail Angsuran</h6>
         </div>
         <div class="card-body">
+            <form method="post" action="{{route('angsuran.update', ['peminjaman' => $peminjaman])}}">
+                @csrf
+                @method('put')
                 <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
                         <label for="namaLengkap">Nama Lengkap</label>
@@ -32,9 +35,9 @@
                             id="tempatLahir" name="tempat_lahir" placeholder="Jakarta" value="{{$peminjaman->jenis_usaha}}">
                     </div>
                     <div class="col-sm-3">
-                        <label for="tanggalLahir">Nama Usaha</label>
-                        <input type="date" class="form-control" disabled
-                            id="tanggalLahir" name="tanggal_lahir" placeholder="01/01/2000" value="{{$peminjaman->nama_usaha}}">
+                        <label for="namaUsaha">Nama Usaha</label>
+                        <input type="text" class="form-control" disabled
+                            id="namaUsaha" name="nama_usaha" value="{{$peminjaman->nama_usaha}}">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -44,7 +47,12 @@
                             name="angsuranTerbayar" placeholder="10xxxxxx">
                     </div>
                 </div>
-                <button type="button" class="btn btn-warning btn-lg float-right">Bayar</button>
+                <input type="hidden" class="form-control form-control-lg" id="cicilan_terbayar"
+                            name="cicilan_terbayar" value="{{$peminjaman->cicilan_terbayar}}">
+                <div>
+                    <input class="btn btn-warning btn-user float-right" type="submit" value="Bayar">
+                </div>
+            </form>
         </div>
     </div>
 
