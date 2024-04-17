@@ -6,6 +6,7 @@ use App\Http\Requests\StoreNasabahRequest;
 use App\Http\Requests\UpdateNasabahRequest;
 use App\Models\Nasabah;
 use App\Models\Peminjaman;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
@@ -109,9 +110,11 @@ class NasabahController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Nasabah $nasabah)
+    public function destroy(Request $request)
     {
+        $nasabah = Nasabah::find($request->nasabahID);
         $nasabah->delete();
-        return redirect(route('nasabah.index'))->with('success', 'Nasabah Deleted Successfully');
+
+        return redirect(route('nasabah.index'))->with('success', 'Berhasil menghapus data nasabah');
     }
 }

@@ -30,7 +30,7 @@ Route::get('nasabah/create', [NasabahController::class, 'create'])->name('nasaba
 Route::post('nasabah', [NasabahController::class, 'store'])->name('nasabah.store');
 Route::get('nasabah/{nasabah}/edit', [NasabahController::class, 'edit'])->name('nasabah.edit');
 Route::put('nasabah/{nasabah}/update', [NasabahController::class, 'update'])->name('nasabah.update');
-Route::delete('nasabah/{nasabah}/destroy', [NasabahController::class, 'destroy'])->name('nasabah.destroy');
+Route::delete('nasabah/destroy', [NasabahController::class, 'destroy'])->name('nasabah.destroy');
 Route::get('nasabah/{nasabah}', [NasabahController::class, 'show'])->name('nasabah.detail');
 
 Route::get('pinjaman', [PinjamanController::class, 'index'])->name('pinjaman.index');
