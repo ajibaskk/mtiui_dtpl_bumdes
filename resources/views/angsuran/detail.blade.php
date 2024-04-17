@@ -49,6 +49,8 @@
                 </div>
                 <input type="hidden" class="form-control form-control-lg" id="cicilan_terbayar"
                             name="cicilan_terbayar" value="{{$peminjaman->cicilan_terbayar}}">
+                <input type="hidden" class="form-control form-control-lg" id="peminjaman_id"
+                            name="peminjaman_id" value="{{$peminjaman->id}}">
                 <div>
                     <input class="btn btn-warning btn-user float-right" type="submit" value="Bayar">
                 </div>

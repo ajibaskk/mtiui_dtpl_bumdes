@@ -8,7 +8,7 @@ use App\Models\Pinjaman;
 use App\Models\MasterBunga;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use PDF; 
+use PDF;
 
 class PeminjamanController extends Controller
 {
@@ -38,7 +38,7 @@ class PeminjamanController extends Controller
 
     public function store(Request $request, Nasabah $nasabah)
     {
-
+        $waktuAngsuran = MasterBunga::where("waktu_angsuran", $request->tenor)->first();
         $totalPinjaman = ($request->tenor + 100)/100 * $request->jumlah_pinjaman;
         $angsuran = $totalPinjaman / $request->tenor;
         $data = [
@@ -48,7 +48,7 @@ class PeminjamanController extends Controller
             'deskripsi_usaha' => $request->deskripsi_usaha,
             'jumlah_pinjaman' => $request->jumlah_pinjaman,
             'tenor' => $request->tenor,
-            'bunga' => $request->bunga,
+            'bunga' => $waktuAngsuran->bunga,
             'total_pinjaman' => floor($totalPinjaman),
             'angsuran' => $angsuran,
             'status' => 'DIAJUKAN'
@@ -64,17 +64,17 @@ class PeminjamanController extends Controller
     {
         return view('peminjaman.detail', ['nasabah' => $nasabah, 'peminjaman'=> $peminjaman]);
     }
-    
+
     public function generatePDF(Nasabah $nasabah, Peminjaman $peminjaman) {
         $data = ['nasabah' => $nasabah, 'peminjaman'=> $peminjaman];
-        
+
         $peminjaman->status = 'DIPROSES';
         $peminjaman->save();
         view()->share('peminjaman.pdf',$data);
         $pdf = PDF::loadView("peminjaman.pdf", $data);
         return $pdf->stream('form-pinjaman.pdf');
     }
-    
+
     public function approve(Nasabah $nasabah, Peminjaman $peminjaman)
     {
         $peminjaman->status = 'DISETUJUI';

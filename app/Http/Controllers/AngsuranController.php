@@ -17,6 +17,7 @@ class AngsuranController extends Controller
     {
         $peminjaman = Peminjaman::leftJoin('angsuran', 'peminjaman.id', '=', 'angsuran.peminjaman_id')
                         ->with('nasabah')
+                        ->select('angsuran.id as angsuran_id', 'angsuran.*', 'peminjaman.*')
                         ->get();
 
         foreach ($peminjaman as $p) {
@@ -52,7 +53,10 @@ class AngsuranController extends Controller
      */
     public function show(string $id)
     {
-        $peminjaman = Peminjaman::leftJoin('angsuran', 'peminjaman.id', '=', 'angsuran.peminjaman_id')->with('nasabah')->where('peminjaman_id', $id)->first();
+        $peminjaman = Peminjaman::leftJoin('angsuran', 'peminjaman.id', '=', 'angsuran.peminjaman_id')
+                            ->with('nasabah')
+                            ->select('angsuran.id as angsuran_id', 'angsuran.*', 'peminjaman.*')
+                            ->where('peminjaman.id', $id)->first();
         return view('angsuran.detail', ['peminjaman' => $peminjaman]);
     }
 
@@ -64,8 +68,9 @@ class AngsuranController extends Controller
         $cicilanTerbayar = $request->cicilan_terbayar + $request->angsuranTerbayar;
 
         $peminjaman = Angsuran::updateOrCreate(
-            ['id' => $id],
-            ['cicilan_terbayar' => $cicilanTerbayar]);
+            ['id' => $id,
+            'peminjaman_id' => $request->peminjaman_id,
+            'cicilan_terbayar' => $cicilanTerbayar]);
 
         return redirect(route('angsuran.index'))->with('success', 'Angsuran Updated Successfully');
     }

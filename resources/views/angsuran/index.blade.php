@@ -55,6 +55,7 @@
                                 </div>
                             </td>
                         </tr>
+                        <p>{{$peminjamanEach}}</p>
                         @endforeach
                     </tbody>
                 </table>
