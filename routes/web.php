@@ -57,6 +57,3 @@ Route::delete('master/tenor/{masterBunga}/destroy', [MasterTenorController::clas
 Route::get('angsuran', [AngsuranController::class, 'index'])->name('angsuran.index');
 Route::get('angsuran/{peminjaman}', [AngsuranController::class, 'show'])->name('angsuran.detail');
 Route::put('angsuran/{peminjaman}/update', [AngsuranController::class, 'update'])->name('angsuran.update');
-
-
-
