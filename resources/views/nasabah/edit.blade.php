@@ -8,7 +8,7 @@
             <h6 class="m-0 font-weight-bold text-primary">Ubah Nasabah</h6>
         </div>
         <div class="card-body">
-            <form method="post" action="{{route('nasabah.update', ['nasabah' => $nasabah])}}">
+            <form method="post" action="{{route('nasabah.update', ['nasabah' => $nasabah])}}" enctype="multipart/form-data">
                 @csrf
                 @method('put')
                 <div class="form-group row">

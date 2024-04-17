@@ -104,6 +104,15 @@ class NasabahController extends Controller
 
         $nasabah->update($data);
 
+        if ($request->file('file_ktp_location')) {
+            $file = $request->file('file_ktp_location');
+            $filename = time().'_'.$file->getClientOriginalName();
+            $path = Storage::putFileAs('public', $file, $filename);
+            $nasabah->update([
+                'file_ktp_location' => str_replace("public", "storage", $path)
+            ]);
+        }
+
         return redirect(route('nasabah.index'))->with('success', 'Nasabah Updated Successfully');
     }
 
