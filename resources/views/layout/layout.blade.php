@@ -38,6 +38,12 @@
             </a>
 
             <!-- Divider -->
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ route('home') }}">
+                    <i class="fas fa-users"></i>
+                    <span>Dashboard</span></a>
+            </li>
+
             <hr class="sidebar-divider my-0">
             <li class="nav-item">
                 <a class="nav-link">
@@ -80,21 +86,21 @@
 
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('pinjaman.index') }}">
-                    <i class="fas fa-coins"></i>
+                    <i class="fas fa-money"></i>
                     <span>Master Pinjaman</span></a>
             </li>
 
              <!-- Nav Item - Bunga-->
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('master.bunga') }}">
-                    <i class="fas fa-user-plus"></i>
+                    <i class="fas fa-user-percent"></i>
                     <span>Master Bunga</span></a>
             </li>
 
             <!-- Nav Item - Bunga-->
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('master.tenor') }}">
-                    <i class="fas fa-user-plus"></i>
+                    <i class="fas fa-user-calendar"></i>
                     <span>Master Tenor</span></a>
             </li>
 
@@ -116,18 +122,6 @@
                     </button>
 
                     <!-- Topbar Search -->
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
