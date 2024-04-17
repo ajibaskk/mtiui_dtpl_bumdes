@@ -40,7 +40,7 @@
             <!-- Divider -->
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('home') }}">
-                    <i class="fas fa-users"></i>
+                    <i class="fas fa-home"></i>
                     <span>Dashboard</span></a>
             </li>
 
@@ -86,21 +86,21 @@
 
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('pinjaman.index') }}">
-                    <i class="fas fa-money"></i>
+                    <i class="fas fa-money-bill"></i>
                     <span>Master Pinjaman</span></a>
             </li>
 
              <!-- Nav Item - Bunga-->
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('master.bunga') }}">
-                    <i class="fas fa-user-percent"></i>
+                    <i class="fas fa-percent"></i>
                     <span>Master Bunga</span></a>
             </li>
 
             <!-- Nav Item - Bunga-->
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('master.tenor') }}">
-                    <i class="fas fa-user-calendar"></i>
+                    <i class="fas fa-calendar"></i>
                     <span>Master Tenor</span></a>
             </li>
 
