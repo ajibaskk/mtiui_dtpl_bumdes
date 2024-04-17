@@ -59,8 +59,11 @@
                     <div class="col-sm-3">
                         <label for="rentangPenghasilan">Rentang Penghasilan per Tahun</label>
                         <select class="custom-select" id="rentangPenghasilan" name="rentang_penghasilan">
-                            <option value="< Rp100.000.000" selected> < Rp100.000.000 </option>
-                            <option value="> Rp100.000.000"> > Rp100.000.000 </option>
+                            <option value="1 - 3 Juta Rupiah" selected> 1 - 3 Juta Rupiah </option>
+                            <option value="4 - 6 Juta Rupiah" selected> 4 - 6 Juta Rupiah </option>
+                            <option value="7 - 10 Juta Rupiah" selected> 7 - 10 Juta Rupiah </option>
+                            <option value="11 - 20 Juta Rupiah" selected> 11 - 20 Juta Rupiah </option>
+                            <option value="> 20 Juta Rupiah" selected> > 20 Juta Rupiah </option>
                         </select>
                     </div>
                 </div>
