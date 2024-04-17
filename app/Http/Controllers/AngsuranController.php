@@ -68,9 +68,8 @@ class AngsuranController extends Controller
         $cicilanTerbayar = $request->cicilan_terbayar + $request->angsuranTerbayar;
 
         $peminjaman = Angsuran::updateOrCreate(
-            ['id' => $id,
-            'peminjaman_id' => $request->peminjaman_id,
-            'cicilan_terbayar' => $cicilanTerbayar]);
+            ['peminjaman_id' => $request->peminjaman_id],
+            ['cicilan_terbayar' => $cicilanTerbayar]);
 
         return redirect(route('angsuran.index'))->with('success', 'Angsuran Updated Successfully');
     }
